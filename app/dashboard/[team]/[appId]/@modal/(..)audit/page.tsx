@@ -1,17 +1,17 @@
 import { Modal } from "./modal";
 
-export default async function PhotoModalPage({
-  params,
-  searchParams,
-}: {
+export default async function PhotoModalPage(props: {
   params: Promise<{ team: string }>;
   searchParams: Promise<{ photoId?: string[] }>;
 }) {
-  const team = (await params).team;
-  const photoId = (await searchParams).photoId;
+  const params = await props.params;
+  const search = await props.searchParams;
   return (
     <Modal>
-      Audit modal filtered with photoId={photoId} (Team: {team})
+      <div>
+        <pre>Params: {JSON.stringify(params, null, 4)}</pre>
+        <pre>Search params on page: {JSON.stringify(search, null, 4)}</pre>
+      </div>
     </Modal>
   );
 }
